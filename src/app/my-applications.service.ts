@@ -15,6 +15,7 @@ export class MyApplicationsService implements CBPApplicationsService {
 
   private subject: BehaviorSubject<CBPApplicationsData> = new BehaviorSubject<CBPApplicationsData>(null);
   private loaded = false;
+  private currentApp: CBPApplication;
 
   constructor(@Inject(CBP_USER_SERVICE) private userService: CBPUserService) {}
 
@@ -29,8 +30,16 @@ export class MyApplicationsService implements CBPApplicationsService {
     return null;
   }
 
-  search(token: string): Observable<CBPApplication[]> {
+  search(token: string): CBPApplication[] {
     return null;
+  }
+
+  registerCurrentApplication(currentApp: CBPApplication) {
+    this.currentApp = currentApp;
+    const data: CBPApplicationsData  = this.subject.getValue();
+    if (data) {
+      data.currentApp = this.currentApp;
+    }
   }
 
   removeFavoriteApplication(favoriteApplication: CBPApplication): Observable<boolean> {
