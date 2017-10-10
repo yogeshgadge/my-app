@@ -1,0 +1,21 @@
+@import '~ngx-cbp-theme/variables';
+
+.app-right-nav-items {
+  display: inline-flex;
+}
+
+.app-title {
+  padding: 0 15px;
+  margin-right: 10px;
+  border-right: 1px solid $brand-default-border;
+}
+
+
+.app-title {
+  padding: 0 $padding-base-horizontal;
+  margin-top: 10px;
+  &.vertical-divider {
+    border-right: 1px solid $brand-default-border;
+  }
+
+}
