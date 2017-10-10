@@ -31,7 +31,9 @@ export class MyApplicationsService implements CBPApplicationsService {
   }
 
   search(token: string): CBPApplication[] {
-    return null;
+    const data = this.subject.getValue();
+    const tokenRegex = new RegExp(token);
+    return data.list.filter((app) => tokenRegex.test(<string>app.name));
   }
 
   registerCurrentApplication(currentApp: CBPApplication) {

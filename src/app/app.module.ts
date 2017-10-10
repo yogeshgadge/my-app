@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MdMenuModule , MdMenu} from '@angular/material';
+import { MatMenuModule , MatMenu} from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -19,12 +19,12 @@ import {MyApplicationsService} from './my-applications.service';
     AppComponent
   ],
   imports: [
-    MdMenuModule,
+    MatMenuModule,
     BrowserModule,
     CBPRootModule,
     CBPAppHeaderModule
   ],
-  exports: [MdMenuModule, MdMenu],
+  exports: [MatMenuModule, MatMenu],
   providers: [
     { provide: CBP_USER_SERVICE,          useClass: MyUserService },
     { provide: CBP_APPLICATIONS_SERVICE,  useClass: MyApplicationsService }

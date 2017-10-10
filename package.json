@@ -6,7 +6,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:aot": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,7 +22,7 @@
     "@angular/platform-browser-dynamic": "4.4.4",
     "@angular/router": "4.4.4",
     "core-js": "2.5.1",
-    "ngx-cbp-theme": "file:../../ngx-cbp-theme/dist-lib",
+    "ngx-cbp-theme": "1.0.0",
     "rxjs": "5.4.3",
     "zone.js": "0.8.18"
   },
