@@ -10,14 +10,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/merge';
 
 @Injectable()
-export class MyApplicationsService implements CBPApplicationsService {
+export class MyApplicationsService extends CBPApplicationsService {
 
 
   private subject: BehaviorSubject<CBPApplicationsData> = new BehaviorSubject<CBPApplicationsData>(null);
   private loaded = false;
-  private currentApp: CBPApplication;
 
-  constructor(@Inject(CBP_USER_SERVICE) private userService: CBPUserService) {}
+  constructor(@Inject(CBP_USER_SERVICE) private userService: CBPUserService) {
+    super();
+  }
 
   getApplicationsData(): Observable<CBPApplicationsData> {
     this._load();
@@ -36,18 +37,6 @@ export class MyApplicationsService implements CBPApplicationsService {
     return data.list.filter((app) => tokenRegex.test(<string>app.name));
   }
 
-  registerCurrentApplication(currentApp: CBPApplication) {
-    this.currentApp = currentApp;
-    const data: CBPApplicationsData  = this.subject.getValue();
-    if (data) {
-      data.currentApp = this.currentApp;
-    }
-  }
-
-  removeFavoriteApplication(favoriteApplication: CBPApplication): Observable<boolean> {
-    const data: CBPApplicationsData  = this.subject.getValue();
-    return this._removeAppFromArray(favoriteApplication, data.favorites);
-  }
   removeRecentApplication(recentApplication: CBPApplication): Observable<boolean> {
     const data: CBPApplicationsData  = this.subject.getValue();
     return this._removeAppFromArray(recentApplication, data.recents);
@@ -80,6 +69,7 @@ export class MyApplicationsService implements CBPApplicationsService {
     return this._getMockHttpData()
       .map((data: CBPApplicationsData) => {
         data.currentApp = new CBPApplication('Kitchen Sink v4.0.1.0', null);
+        this.currentApp.next(data.currentApp);
         data.lastRetrieved = new Date();
         return data;
       });
