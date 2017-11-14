@@ -9,6 +9,6 @@ describe('my-app App', () => {
 
   it('should display Application title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Product create');
+    expect(page.getApplicationTitle()).toEqual('Product create');
   });
 });
